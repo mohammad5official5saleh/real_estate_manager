@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome {{ username }}</h2>
+
+<a href="/add_property">Add Property</a> |
+<a href="/logout">Logout</a>
+
+<hr>
+
+<h3>Your Properties</h3>
+
+{% if properties %}
+    <ul>
+        {% for p in properties %}
+            <li>
+                <strong>{{ p["title"] }}</strong> -
+                {{ p["location"] }} -
+                ${{ p["price"] }} -
+                {{ p["status"] }}
+                
+                <a href="/edit_property/{{ p['id'] }}">Edit</a> |
+                <a href="/delete_property/{{ p['id'] }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No properties yet.</p>
+{% endif %}
+
+{% endblock %}

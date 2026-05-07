@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add New Property</h2>
+
+<form method="POST">
+    <input type="text" name="title" placeholder="Property title" required><br><br>
+    <input type="text" name="location" placeholder="Location" required><br><br>
+    <input type="number" name="price" placeholder="Price" required><br><br>
+
+    <select name="status">
+        <option value="Available">Available</option>
+        <option value="Rented">Rented</option>
+        <option value="Sold">Sold</option>
+    </select><br><br>
+
+    <button type="submit">Add Property</button>
+</form>
+
+<a href="/dashboard">Back</a>
+{% endblock %}

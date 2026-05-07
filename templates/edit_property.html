@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Property</h2>
+
+<form method="POST">
+    <input type="text" name="title" value="{{ property['title'] }}" required><br><br>
+
+    <input type="text" name="location" value="{{ property['location'] }}" required><br><br>
+
+    <input type="number" name="price" value="{{ property['price'] }}" required><br><br>
+
+    <select name="status">
+        <option value="Available" {% if property["status"] == "Available" %}selected{% endif %}>Available</option>
+        <option value="Rented" {% if property["status"] == "Rented" %}selected{% endif %}>Rented</option>
+        <option value="Sold" {% if property["status"] == "Sold" %}selected{% endif %}>Sold</option>
+    </select><br><br>
+
+    <button type="submit">Update Property</button>
+</form>
+
+<a href="/dashboard">Back</a>
+{% endblock %}

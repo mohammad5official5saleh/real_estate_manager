@@ -1,0 +1,10 @@
+import sqlite3
+
+conn = sqlite3.connect("database.db")
+
+with open("schema.sql") as f:
+    conn.executescript(f.read())
+
+conn.close()
+
+print("Database created successfully with users and properties tables!")
