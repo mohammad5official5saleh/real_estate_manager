@@ -1,10 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Welcome</h2>
-    <p>This is your Real Estate Management System.</p>
 
-    <a href="/register">Register</a>
-    <br>
-    <a href="/login">Login</a>
+<section class="home-hero">
+    <div class="hero-overlay">
+        <h1>Your Home Search Starts Here</h1>
+        <p>Find luxury properties to rent or buy</p>
+
+        <div class="hero-buttons">
+            <a class="btn" href="/view_properties">View Properties</a>
+            <a class="btn" href="/register">Create Account</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .home-hero {
+        min-height: calc(100vh - 85px);
+        background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+            url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c") center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-overlay h1 {
+        font-size: 56px;
+        color: white;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+    }
+
+    .hero-overlay p {
+        font-size: 24px;
+        color: #d6d6d6;
+        margin-bottom: 35px;
+    }
+
+    .hero-buttons a {
+        margin: 0 10px;
+    }
+</style>
+
 {% endblock %}

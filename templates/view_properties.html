@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+    {% block content %}
+
+        <div class="filter-wrapper">
+            <div class="filter-box">
+                <form method="GET" class="filter-form">
+                    <select name="type">
+                        <option value="">All Types</option>
+                        <option>Apartment</option>
+                        <option>Villa</option>
+                        <option>Townhouse</option>
+                        <option>Penthouse</option>
+                        <option>Compound</option>
+                    </select>
+
+                    <select name="bedrooms">
+                        <option value="">Bedrooms</option>
+                        <option>Studio</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6+</option>
+                    </select>
+
+                    <select name="bathrooms">
+                        <option value="">Bathrooms</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4+</option>
+                    </select>
+
+                    <button class="btn" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <h2>Available Properties</h2>
+
+        {% if properties %}
+            {% for p in properties %}
+                <div class="property-card modern-card">
+                    <h3>🏡 {{ p["title"] }}</h3>
+                    <p>
+                    <strong>📌 Status:</strong>
+                    <span class="
+                        {% if p['status'] == 'Available' %}status-available
+                        {% elif p['status'] == 'Rent' %}status-rent
+                        {% else %}status-sold{% endif %}
+                    ">
+                        {{ p["status"] }}
+                    </span>
+                    </p>
+                    <p><strong>📍 Location:</strong> {{ p["location"] }}</p>
+                    <p><strong>🏢 Type:</strong> {{ p["property_type"] }}</p>
+                    <p><strong>🛏 Bedrooms:</strong> {{ p["bedrooms"] }}</p>
+                    <p><strong>🛁 Bathrooms:</strong> {{ p["bathrooms"] }}</p>
+                    <p><strong>📐 Area:</strong> {{ p["area"] }}</p>
+                    <p><strong>💰 Price:</strong> ${{ p["price"] }}</p>
+
+                    <div class="property-actions">
+                        <a class="btn" href="/contact/{{ p['id'] }}">Buy</a>
+                        <a class="btn btn-edit" href="/contact/{{ p['id'] }}">Rent</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No properties available.</p>
+        {% endif %}
+
+        {% if not properties %}
+            <p style="text-align:center; margin-top:40px;">
+                No properties found.
+            </p>
+        {% endif %}
+
+{% endblock %}

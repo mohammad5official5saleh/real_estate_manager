@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Login</h2>
+<div class="auth-page">
+    <div class="auth_box">
+        <h2>Login</h2>
 
-<form method="POST">
-    <input type="text" name="username" placeholder="Username" required><br><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
+        <form method="POST">
+            <label>Username</label><br>
+            <input type="text" name="username" placeholder="Enter username" required><br><br>
 
-    <button type="submit">Login</button>
-</form>
+            <label>Password</label><br>
+            <input type="password" name="password" placeholder="Enter password" required><br><br>
 
-<a href="/register">Go to Register</a>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/register">Create account</a></p>
+    </div>
+</div>    
 {% endblock %}

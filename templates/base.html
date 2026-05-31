@@ -1,61 +1,280 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Real Estate Manager</title>
+    <title>MEHUS Real Estate</title>
 
     <style>
-        body {
-            font-family: Arial;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 0;
+        * {
+            box-sizing: border-box;
         }
 
-        header {
-            background-color: #2c3e50;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
             color: white;
-            padding: 15px;
-            text-align: center;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 85px;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            border-bottom: 1px solid #c9a44c;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box img {
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            color: #c9a44c;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 35px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #c9a44c;
         }
 
         .container {
-            padding: 20px;
+            min-height: calc(100vh - 85px);
         }
 
-        a {
+        .btn {
+            background: #c9a44c;
+            color: black;
+            padding: 11px 20px;
+            border-radius: 6px;
             text-decoration: none;
-            color: #3498db;
-            margin-right: 10px;
-        }
-
-        button {
-            background-color: #3498db;
-            color: white;
-            padding: 8px 15px;
             border: none;
             cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #e0bd62;
+        }
+
+        .btn-edit {
+            background: #2f855a;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #b91c1c;
+            color: white;
         }
 
         input, select {
-            padding: 8px;
-            width: 200px;
+            padding: 12px;
+            border: 1px solid #c9a44c;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 420px;
+            background: #111;
+            color: white;
         }
 
-        li {
+        .property-card {
+            background: #111;
+            border: 1px solid #c9a44c;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .filter-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
             margin-bottom: 10px;
         }
+
+        .filter-box {
+            background: #111;
+            border: 1px solid #c9a44c;
+            padding: 18px 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .filter-form {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-form select {
+            min-width: 160px;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links a {
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #c9a44c;
+            text-shadow: 0 0 10px rgba(201, 164, 76, 0.7);
+        }
+
+        .logo-box img {
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            text-shadow: 0 0 12px rgba(201, 164, 76, 0.5);
+        }
+
+        .btn {
+            transition: 0.3s ease;
+            box-shadow: 0 6px 18px rgba(201, 164, 76, 0.25);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(201, 164, 76, 0.4);
+        }
+
+        .property-card {
+            transition: 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(201, 164, 76, 0.18);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #e6c76a;
+            box-shadow: 0 0 10px rgba(201, 164, 76, 0.35);
+        }
+
+        .filter-box {
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #c9a44c;
+            color: #aaa;
+            background: #0b0b0b;
+        }
+
+        .active {
+            color: #c9a44c !important;
+        }
+
+        .auth-page {
+            min-height: calc(100vh - 85px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-box {
+            width: 420px;
+            background: #111;
+            border: 1px solid #c9a44c;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(201, 164, 76, 0.18);
+            text-align: center;
+        }
+
+        
+        .home-page {
+            background: #0b0b0b;
+        }
+
+
+        .inner-page {
+            background: url("{{ url_for('static', filename='images/pattern.png') }}");
+            background-size: 300px;
+            opacity: 0.95;
+        }
+
+        .container {
+            background: rgba(0,0,0,0.85);
+            padding: 20px 40px;
+        }
+
     </style>
-
 </head>
-<body>
 
-<header>
-    <h1>Real Estate Listing System</h1>
-</header>
+<body class="{% if request.path == '/' %}home-page{% else %}inner-page{% endif %}">
 
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
+    <nav class="navbar">
+        <a href="/" class="logo-box">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}">
+            <div class="brand-name">MEHUS ESTATE</div>
+        </a>
+
+        <div class="nav-links">
+                <a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+                <a href="/view_properties">Buy</a>
+                <a href="/view_properties">Rent</a>
+                <a href="/view_properties" class="{% if request.path == '/view_properties' %}active{% endif %}">View Properties</a>
+
+            {% if session.get("user_id") %}
+                <a href="/dashboard">My Properties</a>
+                <a href="/add_property">Add Property</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/register">Sign Up</a>
+                <a href="/login">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <footer class="footer">
+        <p>© 2026 MEHUS ESTATE. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>

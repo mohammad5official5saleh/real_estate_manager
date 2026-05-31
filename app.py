@@ -95,13 +95,23 @@ def add_property():
     if request.method == "POST":
         title = request.form["title"]
         location = request.form["location"]
-        price = request.form["price"]
+        property_type = request.form["property_type"]
+        area = request.form["area"]
+        bedrooms = request.form["bedrooms"]
+        bathrooms = request.form["bathrooms"]
         status = request.form["status"]
+        price = request.form["price"]
+        contact_phone = request.form["contact_phone"]
+        contact_email = request.form["contact_email"]
 
         conn = get_db()
         conn.execute(
-            "INSERT INTO properties (user_id, title, location, price, status) VALUES (?, ?, ?, ?, ?)",
-            (session["user_id"], title, location, price, status)
+            """
+            INSERT INTO properties 
+            (user_id, title, location, property_type, area, bedrooms, bathrooms, status, price, contact_phone, contact_email)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (session["user_id"], title, location, property_type, area, bedrooms, bathrooms, status, price, contact_phone, contact_email)
         )
         conn.commit()
         conn.close()
@@ -156,6 +166,50 @@ def edit_property(property_id):
     conn.close()
 
     return render_template("edit_property.html", property=property)
+
+
+@app.route("/view_properties")
+def view_properties():
+    property_type = request.args.get("type")
+    bedrooms = request.args.get("bedrooms")
+    bathrooms = request.args.get("bathrooms")
+
+    query = "SELECT * FROM properties WHERE 1=1"
+    params = []
+
+    if property_type:
+        query += " AND property_type = ?"
+        params.append(property_type)
+
+    if bedrooms:
+        query += " AND bedrooms = ?"
+        params.append(bedrooms)
+
+    if bathrooms:
+        query += " AND bathrooms = ?"
+        params.append(bathrooms)
+
+    conn = get_db()
+    properties = conn.execute(query, params).fetchall()
+    conn.close()
+
+    return render_template("view_properties.html", properties=properties)
+
+
+@app.route("/contact/<int:property_id>")
+def contact(property_id):
+    conn = get_db()
+    property = conn.execute(
+        "SELECT * FROM properties WHERE id = ?",
+        (property_id,)
+    ).fetchone()
+    conn.close()
+
+    return render_template("contact.html", property=property)
+
+
+
+
 
 
 if __name__ == "__main__":

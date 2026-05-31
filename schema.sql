@@ -12,7 +12,13 @@ CREATE TABLE properties (
     user_id INTEGER NOT NULL,
     title TEXT NOT NULL,
     location TEXT NOT NULL,
-    price REAL NOT NULL,
+    property_type TEXT NOT NULL,
+    area TEXT NOT NULL,
+    bedrooms TEXT NOT NULL,
+    bathrooms TEXT NOT NULL,
     status TEXT NOT NULL,
+    price REAL NOT NULL,
+    contact_phone TEXT NOT NULL,
+    contact_email TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
